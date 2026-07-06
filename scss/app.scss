@@ -23,7 +23,7 @@ $light:     $kl-light;
 
 $body-bg: $kl-light;
 
-@import "bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/bootstrap";
 
 // Ajustements spécifiques à l'application
 .navbar-brand {

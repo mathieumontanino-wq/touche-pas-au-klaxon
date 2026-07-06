@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Touche pas au klaxon : application de covoiturage inter-sites permettant aux employés de proposer et consulter des trajets partagés entre les agences de l'entreprise.">
     <title>Touche pas au klaxon</title>
     <link rel="stylesheet" href="/css/app.css">
 </head>
