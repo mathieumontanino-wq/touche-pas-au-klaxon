@@ -7,11 +7,11 @@
     <title>Touche pas au klaxon</title>
     <link rel="stylesheet" href="/css/app.css">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 <?php require __DIR__ . '/header.php'; ?>
 
-<main class="container my-4">
+<main class="container my-4 flex-grow-1">
     <?php if ($flash !== null): ?>
         <div class="alert alert-<?= htmlspecialchars($flash['type'], ENT_QUOTES, 'UTF-8') ?>" role="alert">
             <?= htmlspecialchars($flash['message'], ENT_QUOTES, 'UTF-8') ?>

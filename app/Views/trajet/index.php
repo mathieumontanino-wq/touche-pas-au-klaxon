@@ -1,4 +1,4 @@
-<h1 class="mb-4">Trajets disponibles</h1>
+<h1 class="mb-4 text-center">Trajets disponibles</h1>
 
 <?php if (empty($trajets)): ?>
     <p>Aucun trajet disponible pour le moment.</p>
