@@ -1,0 +1,35 @@
+// =============================================================
+// Touche pas au klaxon - Feuille de style principale
+// Surcharge des variables Bootstrap avec la palette imposée
+// avant l'import de Bootstrap, afin que tous les composants
+// (boutons, alertes, navbar...) héritent de ces couleurs.
+// =============================================================
+
+// Palette imposée par le cahier des charges
+$kl-light:   #f1f8fc;
+$kl-blue:    #0074c7;
+$kl-blue-dk: #00497c;
+$kl-dark:    #384050;
+$kl-red:     #cd2c2e;
+$kl-green:   #82b864;
+
+// Surcharge des variables thématiques de Bootstrap
+$primary:   $kl-blue;
+$secondary: $kl-blue-dk;
+$dark:      $kl-dark;
+$danger:    $kl-red;
+$success:   $kl-green;
+$light:     $kl-light;
+
+$body-bg: $kl-light;
+
+@import "bootstrap/scss/bootstrap";
+
+// Ajustements spécifiques à l'application
+.navbar-brand {
+    font-weight: 600;
+}
+
+.table {
+    background-color: #fff;
+}

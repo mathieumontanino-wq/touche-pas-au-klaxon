@@ -1,0 +1,20 @@
+# Environnement (contient des identifiants sensibles - JAMAIS sur Git)
+.env
+
+# Dépendances (installées via composer install / npm install)
+/vendor/
+/node_modules/
+
+# CSS compilé (généré depuis scss/app.scss via npm run build:css)
+/public/css/app.css
+
+# Cache PHPUnit
+/.phpunit.cache/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers IDE
+.vscode/
+.idea/
