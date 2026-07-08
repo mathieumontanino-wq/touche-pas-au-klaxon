@@ -17,11 +17,11 @@
                     <a href="/admin/agences/<?= (int) $agence['id_agence'] ?>/modifier" class="btn btn-sm btn-secondary">
                         Modifier
                     </a>
-                    <form action="/admin/agences/<?= (int) $agence['id_agence'] ?>/supprimer" method="post"
-                          onsubmit="return confirm('Confirmez-vous la suppression de cette agence ?');">
-                        <?= \App\Core\Csrf::field() ?>
-                        <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
-                    </form>
+                    <form action="/admin/agences/supprimer" method="post">
+    <?= \App\Core\Csrf::field() ?>
+    <input type="hidden" name="agence_id" value="<?= (int) $agence['id_agence'] ?>">
+    <button type="submit" class="btn btn-sm btn-danger">Supprimer</button>
+</form>
                 </td>
             </tr>
         <?php endforeach; ?>

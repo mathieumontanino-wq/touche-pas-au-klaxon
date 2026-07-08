@@ -117,9 +117,10 @@ final class Agence
     {
         $pdo = $this->pdo;
         $stmt = $pdo->prepare(
-            'SELECT COUNT(*) FROM trajet WHERE id_agence_depart = :id OR id_agence_arrivee = :id'
+            'SELECT COUNT(*) FROM trajet WHERE id_agence_depart = :id1 OR id_agence_arrivee = :id2'
         );
-        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':id1', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':id2', $id, PDO::PARAM_INT);
         $stmt->execute();
 
         return ((int) $stmt->fetchColumn()) > 0;

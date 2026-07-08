@@ -138,15 +138,20 @@ final class AgenceController extends Controller
     }
 
     /**
-     * Supprime une agence, si elle n'est référencée par aucun trajet.
+     * Traite la suppression d'agence via formulaire POST sans paramètre URL.
      *
-     * @param int $id Identifiant de l'agence.
      * @return void
      */
-    public function destroy(int $id): void
+    public function destroyPost(): void
     {
         $this->requireAdmin();
         $this->requireValidCsrf();
+
+        $id = (int) ($_POST['agence_id'] ?? 0);
+
+        if ($id === 0) {
+            $this->redirectWithFlash('danger', 'Identifiant invalide.', '/admin/agences');
+        }
 
         if ($this->agenceModel->isUsedByTrajet($id)) {
             $this->redirectWithFlash(
@@ -159,6 +164,17 @@ final class AgenceController extends Controller
         $this->agenceModel->delete($id);
 
         $this->redirectWithFlash('success', 'L\'agence a été supprimée avec succès.', '/admin/agences');
+    }
+
+    /**
+     * Supprime une agence (méthode conservée pour compatibilité).
+     *
+     * @param int $id Identifiant de l'agence.
+     * @return void
+     */
+    public function destroy(int $id): void
+    {
+        $this->destroyPost();
     }
 
     /**

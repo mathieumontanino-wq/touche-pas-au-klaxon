@@ -9,6 +9,11 @@
     <div class="container my-5 text-center">
         <h1>404 - Page introuvable</h1>
         <p>La page que vous recherchez n'existe pas.</p>
+        <div class="alert alert-warning">
+            <strong>DEBUG :</strong><br>
+            Méthode : <?= htmlspecialchars($_SERVER['REQUEST_METHOD'] ?? '?', ENT_QUOTES, 'UTF-8') ?><br>
+            URI : <?= htmlspecialchars($_SERVER['REQUEST_URI'] ?? '?', ENT_QUOTES, 'UTF-8') ?>
+        </div>
         <a href="/" class="btn btn-primary">Retour à l'accueil</a>
     </div>
 </body>

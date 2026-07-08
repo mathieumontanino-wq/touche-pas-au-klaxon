@@ -52,8 +52,11 @@ abstract class Controller
      */
     protected function redirect(string $url): void
     {
+        if (ob_get_level() > 0) {
+            ob_end_clean();
+        }
         header('Location: ' . $url);
-        exit;
+        exit(0);
     }
 
     /**

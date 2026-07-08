@@ -35,6 +35,9 @@ final class Router
     /**
      * Déclare l'ensemble des routes de l'application.
      *
+     * Les identifiants numériques dans l'URL utilisent le pattern intégré
+     * :id (nombres naturels) fourni par la librairie izniburak/router.
+     *
      * @return void
      */
     public function registerRoutes(): void
@@ -48,10 +51,10 @@ final class Router
         // --- Routes authentifiées (employé connecté) ---
         $this->router->get('/trajets/creer', fn () => (new TrajetController())->create());
         $this->router->post('/trajets/creer', fn () => (new TrajetController())->store());
-        $this->router->get('/trajets/{i}', fn ($id) => (new TrajetController())->show((int) $id));
-        $this->router->get('/trajets/{i}/modifier', fn ($id) => (new TrajetController())->edit((int) $id));
-        $this->router->post('/trajets/{i}/modifier', fn ($id) => (new TrajetController())->update((int) $id));
-        $this->router->post('/trajets/{i}/supprimer', fn ($id) => (new TrajetController())->destroy((int) $id));
+        $this->router->get('/trajets/:id', fn ($id) => (new TrajetController())->show((int) $id));
+        $this->router->get('/trajets/:id/modifier', fn ($id) => (new TrajetController())->edit((int) $id));
+        $this->router->post('/trajets/:id/modifier', fn ($id) => (new TrajetController())->update((int) $id));
+        $this->router->post('/trajets/:id/supprimer', fn ($id) => (new TrajetController())->destroy((int) $id));
 
         // --- Routes administrateur ---
         $this->router->get('/admin', fn () => (new DashboardController())->index());
@@ -59,11 +62,11 @@ final class Router
         $this->router->get('/admin/agences', fn () => (new AgenceController())->index());
         $this->router->get('/admin/agences/creer', fn () => (new AgenceController())->create());
         $this->router->post('/admin/agences/creer', fn () => (new AgenceController())->store());
-        $this->router->get('/admin/agences/{i}/modifier', fn ($id) => (new AgenceController())->edit((int) $id));
-        $this->router->post('/admin/agences/{i}/modifier', fn ($id) => (new AgenceController())->update((int) $id));
-        $this->router->post('/admin/agences/{i}/supprimer', fn ($id) => (new AgenceController())->destroy((int) $id));
+        $this->router->get('/admin/agences/:id/modifier', fn ($id) => (new AgenceController())->edit((int) $id));
+        $this->router->post('/admin/agences/:id/modifier', fn ($id) => (new AgenceController())->update((int) $id));
+        $this->router->post('/admin/agences/supprimer', fn () => (new AgenceController())->destroyPost());
         $this->router->get('/admin/trajets', fn () => (new AdminTrajetController())->index());
-        $this->router->post('/admin/trajets/{i}/supprimer', fn ($id) => (new AdminTrajetController())->destroy((int) $id));
+        $this->router->post('/admin/trajets/:id/supprimer', fn ($id) => (new AdminTrajetController())->destroy((int) $id));
     }
 
     /**
@@ -74,7 +77,6 @@ final class Router
      */
     public function run(): void
     {
-        // Affiche une page 404 conviviale lorsqu'aucune route ne correspond.
         $this->router->notFound(function () {
             http_response_code(404);
             require __DIR__ . '/../Views/errors/404.php';
@@ -83,3 +85,4 @@ final class Router
         $this->router->run();
     }
 }
+    
